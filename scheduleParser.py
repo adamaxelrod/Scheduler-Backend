@@ -1,58 +1,61 @@
 import boto3
 import csv
+import Utilities.Constants as Constants
+import Schedule.Schedule as Schedule
 from boto3.dynamodb.conditions import Key, Attr
 
+import Schedule.CrewInfo as CrewInfo
+
+""" Return TV host for corresponding away team """
 def getTVForTeam(away):
-    foxGames = ['PHI', 'NYG', 'WAS', 'DAL', 'MIN', 'GB', 'DET', 'CHI', 'TB', 'ATL', 'CAR', 'NO', 'LAR', 'SF', 'ARZ', 'SEA']
-    cbsGames = ['MIA', 'NYJ', 'NE', 'BUF', 'BAL', 'CIN', 'CLE', 'PIT', 'IND', 'HOU', 'TEN', 'JAX', 'LAS', 'KC', 'DEN', 'LAC']
-    
-    if (away in foxGames):
-        return 'FOX'
-    elif (away in cbsGames):
-        return 'CBS'
-    
-    return None
+    if (away in Constants.FOX_TEAMS):
+        return Constants.FOX
+    elif (away in Constants.CBS_TEAMS):
+        return Constants.CBS
+    else:
+        return 'None'
 
 
+""" Lookup TV host for the corresponding game """
 def fetchTV(event, away):
     tv = getTVForTeam(away)
-
     if (event != None):
-        if (event in 'SNF'):
-            return 'NBC'
-        elif (event in 'MNF'):
-            return 'ESPN'
-        elif (event in 'THNF'):
-            return 'FOX'
-        elif (event in 'THGV'):
+        if (event in Constants.SNF):
+            return Constants.SNF_TV
+        elif (event in Constants.MNF):
+            return Constants.MNF_TV
+        elif (event in Constants.THNF):
+            return Constants.THNF_TV
+        elif (event in Constants.THGV):
             return tv
-        elif (event in 'XMAS'):
-            return 'FOX'
-        elif (event in 'NAT'):
+        elif (event in Constants.XMAS):
+            return Constants.XMAS_TV
+        elif (event in Constants.SUN_NATIONAL):
             return tv
-    else:
-        return tv
+    return tv
 
 
-def store(week, away, home, event=None):
+""" Persist the game information in the database """
+def store(week, away, home, event="N/A"):
     try:
-        if (week == '1'):
-            print('Week: {} {} @ {} - {} ({})'.format(week, away, home, event, fetchTV(event, away)))
-            dynamodb = boto3.resource('dynamodb', region_name='us-west-1')
-            table = dynamodb.Table('GameInfo_2020')
-            table.put_item(Item = {
-                                'gameId': ('{}_{}_{}').format(week, away, home),
-                                'week': week,
-                                'away': away,
-                                'home': home,
-                                'specialEventNotes': event,
-                                'tv' : fetchTV(event, away)
-                            })
+        print('Week: {} {} @ {} - {} ({})'.format(week, away, home, event, fetchTV(event, away)))
+        dynamodb = boto3.resource('dynamodb', region_name=Constants.AWS_REGION)
+        table = dynamodb.Table(Constants.TABLE_SCHEDULE_2020)
+        table.put_item(Item = {
+                            'gameId': ('W{}_{}_{}').format(week, away, home),
+                            'week': week,
+                            'away': away,
+                            'home': home,
+                            'specialEventNotes': event,
+                            'tv' : fetchTV(event, away)
+                        })
     except KeyError:
         print("Exception storing data")
  
+
+""" Parse the schedule CSV and store it """
 def parseAndStore():
-    with open('NFL2020_csv.csv', mode='r') as csv_file:
+    with open(Constants.SCHEUDLE_FILE, mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
 
         for row in csv_reader:
@@ -67,18 +70,18 @@ def parseAndStore():
                         eventNote = game[1].split(')')
                         eventNote = eventNote[0]
 
-                        if ('THNF' in eventNote):
-                            event = 'THNF'
-                        elif ('SNF' in eventNote):
-                            event = 'SNF'
-                        elif ('MNF' in eventNote):
-                            event = 'MNF'
-                        elif ('THGV' in eventNote):
-                            event = 'THGV'
-                        elif ('XMAS' in eventNote):
-                            event = 'XMAS'
-                        elif ('NAT' in eventNote):
-                            event = 'NAT'
+                        if (Constants.THNF in eventNote):
+                            event = Constants.THNF
+                        elif (Constants.SNF in eventNote):
+                            event = Constants.SNF
+                        elif (Constants.MNF in eventNote):
+                            event = Constants.MNF
+                        elif (Constants.THGV in eventNote):
+                            event = Constants.THGV
+                        elif (Constants.XMAS in eventNote):
+                            event = Constants.XMAS
+                        elif (Constants.SUN_NATIONAL in eventNote):
+                            event = Constants.SUN_NATIONAL
                         else:
                             event = 'None'
                         store (week.strip(), away.strip(), home.strip(), event.strip())
@@ -88,5 +91,26 @@ def parseAndStore():
                         home = game[1]
                         store(week.strip(), away.strip(), home.strip())
 
+
+""" Query for games """ 
+def fetchGames(week):
+    dynamodb = boto3.resource('dynamodb', region_name=Constants.AWS_REGION)
+    table = dynamodb.Table(Constants.TABLE_SCHEDULE_2020)
+    response = table.scan(FilterExpression=Key('week').eq(week))
+
+    for game in response['Items']:
+        print("{} @ {} - {} {}".format(game['away'], game['home'], game['tv'], game['specialEventNotes'] if (game['specialEventNotes'] != 'N/A') else ""))
+
+
+def processSchedule():
+    schedule = Schedule.Schedule()
+
+
+def fetchCrews():
+    crewInfo = CrewInfo.CrewInfo()
+    
 if __name__ == '__main__':
-    parseAndStore()    
+    #parseAndStore()    
+    #fetchGames("1")
+    processSchedule()
+    #fetchCrews()
