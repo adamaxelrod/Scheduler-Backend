@@ -124,7 +124,7 @@ def handler(event, context):
     print("{} - {}".format(event, context))
     schedule = processSchedule()
     parser = JSONParser.JSONParser(schedule.getGames(), schedule.getCrews())
-    return respond(None, json.loads(parser.fetchCrewAsJSON(event["queryStringParameters"]['crewName'])))
+    return respond(None, json.loads(parser.fetchFullCrewListAsJSON()))
 
 
 if __name__ == '__main__':
