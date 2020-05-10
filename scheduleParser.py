@@ -1,5 +1,6 @@
 import boto3
 import csv
+import Utilities.JSONParser as JSONParser
 import Utilities.Constants as Constants
 import Schedule.Schedule as Schedule
 from boto3.dynamodb.conditions import Key, Attr
@@ -103,14 +104,22 @@ def fetchGames(week):
 
 
 def processSchedule():
-    schedule = Schedule.Schedule()
+    return Schedule.Schedule()
 
 
 def fetchCrews():
     crewInfo = CrewInfo.CrewInfo()
     
+
+def handler(event, context): 
+    schedule = processSchedule()
+    parser = JSONParser.JSONParser(schedule.getGames(), schedule.getCrews())
+
+
 if __name__ == '__main__':
     #parseAndStore()    
-    #fetchGames("1")
-    processSchedule()
-    #fetchCrews()
+    schedule = processSchedule()
+    parser = JSONParser.JSONParser(schedule.getGames(), schedule.getCrews())
+   # print(parser.fetchWeekAsJSON(1))
+    print(parser.fetchCrewAsJSON("MARTIN"))
+    

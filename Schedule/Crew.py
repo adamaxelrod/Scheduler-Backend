@@ -1,4 +1,5 @@
 import json
+from json import JSONEncoder
 import Utilities.Constants as Constants
 
 class Crew(object):
@@ -12,45 +13,45 @@ class Crew(object):
         self.homeCount = self.initializeTeamList()
         self.awayCount = self.initializeTeamList()
 
-
+    """ intialize schedule information """
     def initializeSchedule(self):
         schedule = {}
         for i in range(1, 18):
             schedule[str(i)] = Constants.NO_GAME_ASSIGNED
         return schedule
 
-
+    """ intialize team list """
     def initializeTeamList(self):
         teamList = {}
         for team in Constants.ALL_TEAMS:
             teamList[team] = 0
         return teamList
 
-
+    """ get home count """
     def getHomeCount(self):
         return self.homeCount
 
-
+    """ get away count """
     def getAwayCount(self):
         return self.awayCount
 
-
+    """ get crew name """
     def getCrewName(self):
         return self.crewName
 
-
+    """ get region """
     def getRegion(self):
         return self.region
 
-
+    """ get schedule """
     def getSchedule(self):
         return self.schedule
 
-
+    """ get primetime status """
     def getPrimetime(self):
         return self.primetime
 
-
+    """ check if primetime games are allowed for this crew """
     def isPrimetimeAllowed(self, primetime):
         primetimeStr = primetime.lower() + "Allowed"
         if (self.rules[primetimeStr] == "true"):
@@ -120,6 +121,23 @@ class Crew(object):
         return True if totalCountForTeam >= Constants.MAX_TIMES_PER_TEAM else False
 
 
+    def getRanking(self, week, home, away, primetime=None):
+        ranking = ""
+
+        if (primetime != None):
+            ranking = self.getPrimetimeRanking(primetime, week, home, away)
+        else:
+            ranking = self.getNonPrimetimeRanking(week, home, away)
+
+        if (int(week) <= Constants.HALF_SEASON and self.totalOff == 0):
+            if (ranking <= Constants.MED_RANKING and ranking > Constants.NOT_ALLOWED):
+                return Constants.MIN_RANKING
+        elif (int(week) >= Constants.HALF_SEASON and self.totalOff < 2):
+            if (ranking <= Constants.MED_RANKING and ranking > Constants.NOT_ALLOWED):
+                return Constants.MIN_RANKING
+        return ranking
+
+
     def getPrimetimeRanking(self, primetime, week, home, away):
         if (self.isAssigned(week) != True):
             primetimeAllowed = self.isPrimetimeAllowed(primetime)
@@ -142,7 +160,7 @@ class Crew(object):
                 hadTeamsAtAll == True and
                 maxedOutEitherTeam == False and
                 hadTeamWithinFourWeeks == False):
-                return Constants.MID_RANKING
+                return Constants.MED_RANKING
             # Primetime allowed, Primetime maxed but allow extra, Had teams but recently (and not maxed)
             elif(primetimeAllowed == True and 
                 (primetimeCount < Constants.MAX_EXTRA_PRIMETIME and extraPrimetimeAllowed == True) and
@@ -177,7 +195,7 @@ class Crew(object):
             elif(hadTeamsAtAll == True and
                 maxedOutEitherTeam == False and
                 hadTeamWithinFourWeeks == False):
-                return Constants.MID_RANKING
+                return Constants.MED_RANKING
             # Primetime allowed, Primetime not maxed, Had teams but recently (and not maxed)
             elif(hadTeamsAtAll == True and
                 maxedOutEitherTeam == False and
@@ -187,3 +205,7 @@ class Crew(object):
                 return Constants.NOT_ALLOWED
         else:
             return Constants.NOT_ALLOWED
+
+class CrewEncoder(JSONEncoder):
+        def default(self, o):
+            return o.__dict__

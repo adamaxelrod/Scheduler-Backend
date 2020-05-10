@@ -1,4 +1,5 @@
 import json
+from json import JSONEncoder
 import Utilities.Constants as Constants
 
 class Game(object):
@@ -8,6 +9,7 @@ class Game(object):
         self.home = home
         self.tv = tv
         self.notes = notes
+        self.primetime = self.getPrimetime()
         self.crew = None
 
     def getAway(self):
@@ -30,19 +32,19 @@ class Game(object):
         elif (self.notes == Constants.THNF):
             return Constants.THNF           
         return None
-    
 
     def getNotes(self):
         return " (" + self.notes + ")" if self.notes != 'N/A' else ''
 
-
     def setCrew(self, crew):
         self.crew = crew
-
 
     def getCrew(self):
         return self.crew
 
-
     def printGame(self):
         print("W{} - {} @ {}".format(self.getWeek(), self.getAway(), self.getHome()))
+
+class GameEncoder(JSONEncoder):
+        def default(self, o):
+            return o.__dict__

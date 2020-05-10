@@ -8,6 +8,7 @@ import Schedule.GameInfo as GameInfo
 import Schedule.Game as Game
 from boto3.dynamodb.conditions import Key, Attr
 
+
 class Schedule(object):
     def __init__(self):
         self.crewStore = self.loadCrews()
@@ -67,6 +68,7 @@ class Schedule(object):
         print("Total Primetime: {}".format(self.getCrews()[crewName].getPrimetime()))
         print("Total Games by Team: {}".format(self.getCrews()[crewName].getHomeCount()))
 
+
     def loadCrews(self):
         return CrewInfo.CrewInfo()
         
@@ -93,69 +95,65 @@ class Schedule(object):
         for i in range(1, 18):
             primetimeGames = self.gameStore.getPrimetimeGamesForWeek(i)
             nonPrimetimeGames = self.gameStore.getNonPrimetimeGamesForWeek(i)
-
+            crewList = self.getRandomCrewList()
+            unassignedGameList = []
             crewName = ""
 
+            # Assign primetime games first
             for game in primetimeGames:
-                crewName = self.findBestCrewForPrimetime(game.getPrimetime(), game.getWeek(), game.getAway(), game.getHome())
-                if (crewName == ""):
-                    print("CANT ASSIGN: W{} {} @ {}".format(game.getWeek(), game.getAway(), game.getHome()))
+                crewName = self.findBestCrew(game.getWeek(), game.getAway(), game.getHome(), game.getPrimetime())
+                if (crewName == Constants.NO_GAME_ASSIGNED):
+                    unassignedGameList.append(game)
                 else:
                     self.updateCrewSchedule(crewName, game) 
+                    #crewList.pop(crewName)                   
  
+            # Assign non-primetime games next
             for game in nonPrimetimeGames:
                 crewName = self.findBestCrew(game.getWeek(), game.getAway(), game.getHome())
-                if (crewName == ""):
-                    print("CANT ASSIGN: W{} {} @ {}".format(game.getWeek(), game.getAway(), game.getHome()))
+                if (crewName == Constants.NO_GAME_ASSIGNED):
+                    unassignedGameList.append(game)
                 else:
                     self.updateCrewSchedule(crewName, game) 
- 
+                    #crewList.pop(crewName)
+
+            #TODO - find assignment for any unassigned games
+            for game in unassignedGameList:
+                print("CANT ASSIGN: W{} {} @ {} - {}".format(game.getWeek(), game.getAway(), game.getHome(), game.getPrimetime()))
+
+          #  for crew in crewList:
+          #      self.updateCrewSchedule(crewName, None)
+
 
     def updateCrewSchedule(self, crewName, game):
         if (crewName != None):
             self.crewStore.updateCrew(crewName, game)
             self.gameStore.updateGame(game.getWeek(), game, crewName)
+       # else:
+        #    self.crewStore.assignOff(crewName)
 
-
-    def findBestCrewForPrimetime(self, primetime, week, away, home):
-        crewList = self.getRandomCrewList()
-        rankings = {Constants.MIN_RANKING: [], Constants.LOW_RANKING: [], Constants.MID_RANKING: [], Constants.MAX_RANKING: []}
         
+    def findBestCrew(self, week, away, home, primetime=None):
+        crewList = self.getRandomCrewList()
+        rankings = {Constants.MIN_RANKING: [], Constants.LOW_RANKING: [], Constants.MED_RANKING: [], Constants.HIGH_RANKING: [], Constants.MAX_RANKING: []}
+ 
         for crew in crewList:
-            ranking = self.getCrews()[crew].getPrimetimeRanking(primetime, week, away, home)
+            ranking = self.getCrews()[crew].getRanking(week, away, home, primetime)
             if (ranking != Constants.NOT_ALLOWED):
                 rankings[ranking].append(crew)
-        
+        return self.parseRankings(rankings) 
+
+
+    def parseRankings(self, rankings):
         if (rankings[Constants.MAX_RANKING] != []):
             return rankings[Constants.MAX_RANKING][0]
-        elif(rankings[Constants.MID_RANKING] != []):
-            return rankings[Constants.MID_RANKING][0]
+        elif(rankings[Constants.HIGH_RANKING] != []):
+            return rankings[Constants.HIGH_RANKING][0]
+        elif(rankings[Constants.MED_RANKING] != []):
+            return rankings[Constants.HIGH_RANKING][0]
         elif(rankings[Constants.LOW_RANKING] != []):
             return rankings[Constants.LOW_RANKING][0]    
         elif(rankings[Constants.MIN_RANKING] != []):
             return rankings[Constants.MIN_RANKING][0]
-        else:
-            print("PRIME *** Rankings: {}".format(rankings))
-            return ""
-        
-
-    def findBestCrew(self, week, away, home):
-        crewList = self.getRandomCrewList()
-        rankings = {Constants.MIN_RANKING: [], Constants.LOW_RANKING: [], Constants.MID_RANKING: [], Constants.MAX_RANKING: []}
-        
-        for crew in crewList:
-            ranking = self.getCrews()[crew].getNonPrimetimeRanking(week, away, home)
-            if (ranking != Constants.NOT_ALLOWED):
-                rankings[ranking].append(crew)
-        
-        if (rankings[Constants.MAX_RANKING] != []):
-            return rankings[Constants.MAX_RANKING][0]
-        elif(rankings[Constants.MID_RANKING] != []):
-            return rankings[Constants.MID_RANKING][0]
-        elif(rankings[Constants.LOW_RANKING] != []):
-            return rankings[Constants.LOW_RANKING][0] 
-        elif(rankings[Constants.MIN_RANKING] != []):
-            return rankings[Constants.MIN_RANKING][0]
-        else:
-            print("NON Rankings: {}".format(rankings))            
-            return ""
+        else:           
+            return Constants.NO_GAME_ASSIGNED
