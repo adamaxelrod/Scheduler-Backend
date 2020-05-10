@@ -23,9 +23,6 @@ class Game(object):
 
     def getTv(self):
         return self.tv
-
-    def getCrew(self):
-        return self.crew
         
     def getPrimetime(self):
         if (self.notes == Constants.SNF):
