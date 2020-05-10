@@ -27,6 +27,14 @@ class Crew(object):
         return teamList
 
 
+    def getHomeCount(self):
+        return self.homeCount
+
+
+    def getAwayCount(self):
+        return self.awayCount
+
+
     def getCrewName(self):
         return self.crewName
 
@@ -51,11 +59,18 @@ class Crew(object):
             return False
 
 
+    def isExtraPrimetimeAllowed(self):
+        extraPrimetimeStr =  "multipleAllowed"
+        if (extraPrimetimeStr in self.rules and self.rules[extraPrimetimeStr] == "true"):
+            return True
+        else:
+            return False
+
+
     def addGameToSchedule(self, game):
         self.schedule[game.getWeek()] = game
         self.homeCount[game.getHome()] = self.homeCount[game.getHome()] + 1
         self.awayCount[game.getAway()] = self.awayCount[game.getAway()] + 1
-
         if (game.getPrimetime() == Constants.SNF):
             self.primetime[Constants.SNF] += 1
         elif(game.getPrimetime() == Constants.MNF):
@@ -70,13 +85,13 @@ class Crew(object):
 
 
     def isAssigned(self, week):
-        return True if self.schedule[week] != "" else False 
+        return True if self.schedule[week] != Constants.NO_GAME_ASSIGNED else False 
 
 
-    def hadTeamRecently(self, week, team):
+    def hadTeamRecently(self, week, team, threshold):
         if (int(week) > 1):
-            lowerBound = int(week) - 4 if (int(week) - 4 > 0) else 1
-            upperBound = int(week) if (int(week) >= 0) else 1
+            lowerBound = int(week) - threshold if (int(week) - threshold > 0) else 1
+            upperBound = int(week)
 
             for prev in range(lowerBound, upperBound):
                 if (str(prev) in self.schedule and self.schedule[str(prev)] != Constants.NO_GAME_ASSIGNED):
@@ -85,31 +100,35 @@ class Crew(object):
         return False
 
 
-    def hadTeamsRecently(self, week, home, away):
-        if (self.hadTeamRecently(week, home) or self.hadTeamRecently(week, away)):
+    def hadTeamsRecently(self, week, home, away, threshold):
+        if (self.hadTeamRecently(week, home, threshold) or self.hadTeamRecently(week, away, threshold)):
             return True
         return False 
 
 
     def hadOneTeam(self, home, away):
         homeTeamCount = self.homeCount[home] + self.awayCount[home]
-        awayTeamCount = self.awayCount[away] + self.awayCount[away]
+        awayTeamCount = self.homeCount[away] + self.awayCount[away]
         return True if homeTeamCount > 0 or awayTeamCount > 0 else False
 
 
     def maxedOutEitherTeam(self, home, away):
         homeTeamCount = self.homeCount[home] + self.awayCount[home]
-        awayTeamCount = self.awayCount[away] + self.awayCount[away]
-        return True if homeTeamCount >= Constants.MAX_TIMES_PER_TEAM or awayTeamCount >= Constants.MAX_TIMES_PER_TEAM else False
+        awayTeamCount = self.homeCount[away] + self.awayCount[away]
+
+        totalCountForTeam = homeTeamCount + awayTeamCount
+        return True if totalCountForTeam >= Constants.MAX_TIMES_PER_TEAM else False
 
 
     def getPrimetimeRanking(self, primetime, week, home, away):
         if (self.isAssigned(week) != True):
             primetimeAllowed = self.isPrimetimeAllowed(primetime)
             primetimeCount = self.primetime[primetime]
+            extraPrimetimeAllowed = self.isExtraPrimetimeAllowed()
 
             hadTeamsAtAll = self.hadOneTeam(home, away)
-            hadTeamWithinFourWeeks = self.hadTeamsRecently(week, home, away)
+            hadTeamsLastTwoWeeks = self.hadTeamsRecently(week, home, away, 2)
+            hadTeamWithinFourWeeks = self.hadTeamsRecently(week, home, away, 4)            
             maxedOutEitherTeam = self.maxedOutEitherTeam(home, away)
 
             # Primetime allowed, Primetime not maxed, Hasn't had teams at all
@@ -124,13 +143,20 @@ class Crew(object):
                 maxedOutEitherTeam == False and
                 hadTeamWithinFourWeeks == False):
                 return Constants.MID_RANKING
+            # Primetime allowed, Primetime maxed but allow extra, Had teams but recently (and not maxed)
+            elif(primetimeAllowed == True and 
+                (primetimeCount < Constants.MAX_EXTRA_PRIMETIME and extraPrimetimeAllowed == True) and
+                hadTeamsAtAll == True and
+                maxedOutEitherTeam == False and
+                (hadTeamWithinFourWeeks == True and hadTeamsLastTwoWeeks == False)):
+                return Constants.LOW_RANKING
             # Primetime allowed, Primetime not maxed, Had teams but recently (and not maxed)
             elif(primetimeAllowed == True and 
                 primetimeCount < Constants.MAX_PRIMETIME and
                 hadTeamsAtAll == True and
                 maxedOutEitherTeam == False and
-                hadTeamWithinFourWeeks == True):
-                return Constants.MIN_RANKING
+                (hadTeamWithinFourWeeks == True and hadTeamsLastTwoWeeks == False)):
+                return Constants.NOT_ALLOWED
             else:
                 return Constants.NOT_ALLOWED
         else:
@@ -140,7 +166,8 @@ class Crew(object):
     def getNonPrimetimeRanking(self, week, home, away):
         if (self.isAssigned(week) != True):
             hadTeamsAtAll = self.hadOneTeam(home, away)
-            hadTeamWithinFourWeeks = self.hadTeamsRecently(week, home, away)
+            hadTeamsLastTwoWeeks = self.hadTeamsRecently(week, home, away, 2)
+            hadTeamWithinFourWeeks = self.hadTeamsRecently(week, home, away, 4)
             maxedOutEitherTeam = self.maxedOutEitherTeam(home, away)
 
             # Primetime allowed, Primetime not maxed, Hasn't had teams at all
@@ -154,7 +181,7 @@ class Crew(object):
             # Primetime allowed, Primetime not maxed, Had teams but recently (and not maxed)
             elif(hadTeamsAtAll == True and
                 maxedOutEitherTeam == False and
-                hadTeamWithinFourWeeks == True):
+                (hadTeamWithinFourWeeks == True and hadTeamsLastTwoWeeks == False)):
                 return Constants.MIN_RANKING
             else:
                 return Constants.NOT_ALLOWED

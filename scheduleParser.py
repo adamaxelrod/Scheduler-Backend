@@ -55,7 +55,7 @@ def store(week, away, home, event="N/A"):
 
 """ Parse the schedule CSV and store it """
 def parseAndStore():
-    with open(Constants.SCHEUDLE_FILE, mode='r') as csv_file:
+    with open(Constants.SCHEDULE_FILE, mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
 
         for row in csv_reader:
