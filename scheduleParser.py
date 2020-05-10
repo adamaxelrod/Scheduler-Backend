@@ -1,5 +1,6 @@
 import boto3
 import csv
+import json
 import Utilities.JSONParser as JSONParser
 import Utilities.Constants as Constants
 import Schedule.Schedule as Schedule
@@ -110,10 +111,20 @@ def processSchedule():
 def fetchCrews():
     crewInfo = CrewInfo.CrewInfo()
     
+def respond(err, res=None):
+    return {
+        'statusCode': '400' if err else '200',
+        'body': err.message if err else json.dumps(res),
+        'headers': {
+            'Content-Type': 'application/json',
+        },
+    }
 
 def handler(event, context): 
+    print("{} - {}".format(event, context))
     schedule = processSchedule()
     parser = JSONParser.JSONParser(schedule.getGames(), schedule.getCrews())
+    return respond(None, json.loads(parser.fetchCrewAsJSON(event["queryStringParameters"]['crewName'])))
 
 
 if __name__ == '__main__':
