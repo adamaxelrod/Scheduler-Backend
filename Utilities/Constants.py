@@ -31,9 +31,11 @@ AWS_REGION = "us-west-1"
 TABLE_SCHEDULE_2020 = "GameInfo_2020"
 TABLE_CREWINFO_2020 = "CrewInfo"
 
+
 """ Schedule file info """
 SCHEDULE_FILE = '../files/NFL2020_csv.csv'
 SCHEDULE_OUTPUT = 'NFL2020_generated.csv'
+
 
 """ Ranking and algorithm tuning params """
 NOT_ALLOWED = 0
@@ -43,12 +45,14 @@ MED_RANKING = 3
 HIGH_RANKING = 4
 MAX_RANKING = 5
 
-MAX_PRIMETIME = 1
+MAX_PRIMETIME = 2
 MAX_EXTRA_PRIMETIME = 3
 
 MAX_TIMES_PER_TEAM = 3
 
 NO_GAME_ASSIGNED = ""
+
+WEEK_OFF = "OFF"
 
 HALF_SEASON = 9
 FULL_SEASON = 17
