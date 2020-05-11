@@ -17,6 +17,7 @@ class Schedule(object):
         self.runTest()
 
 
+    """ tester """ 
     def runTest(self):
        # self.printGamesForCrew("HOCHULI")
        # self.printGamesForCrew("CORRENTE")
@@ -26,6 +27,7 @@ class Schedule(object):
         self.printAllCrews()
 
 
+    """ Print all crews test function """ 
     def printAllCrews(self):
         with open(Constants.SCHEDULE_OUTPUT, 'w') as f:
             for key in self.getCrews().keys():
@@ -42,7 +44,8 @@ class Schedule(object):
                         gameList = gameList + "OFF,"
                 f.write("%s,%s\n"%(key, gameList))
         
-
+        
+    """ Print all games for week test function """ 
     def printGamesForWeek(self, week):
         weekGames = self.getGames()[str(week)]
         crewList = {}
@@ -55,6 +58,7 @@ class Schedule(object):
         print ("Crew List: {}".format(crewList))
 
 
+    """ Print all games for crew test function """
     def printGamesForCrew(self, crewName):
         crewSchedule = self.getCrews()[crewName].getSchedule()
 
@@ -91,31 +95,44 @@ class Schedule(object):
         return crewList
 
 
+    """ Main scheduling algorithm """
     def processSchedule(self):
-        for i in range(1, 18):
-            primetimeGames = self.gameStore.getPrimetimeGamesForWeek(i)
-            nonPrimetimeGames = self.gameStore.getNonPrimetimeGamesForWeek(i)
+        # Iterate through all weeks of the season
+        for i in range(0, Constants.FULL_SEASON):
+            week = i + 1
+            primetimeGames = self.gameStore.getPrimetimeGamesForWeek(week)
+            nonPrimetimeGames = self.gameStore.getNonPrimetimeGamesForWeek(week)
+            totalGamesForWeek = len(primetimeGames) + len(nonPrimetimeGames)
+            
+            # Randomize the list of crews for each week to ensure random assignments
             crewList = self.getRandomCrewList()
+            
             unassignedGameList = []
             crewName = ""
 
-            # Assign primetime games first
+            # TODO - assign off weeks first
+            #for j in range(0, Constants.MAX_GAMES_PER_WEEK - totalGamesForWeek):
+                
+            
+            # Assign primetime games
             for game in primetimeGames:
-                crewName = self.findBestCrew(game.getWeek(), game.getAway(), game.getHome(), game.getPrimetime())
+                crewName = self.findBestCrew(crewList, game.getWeek(), game.getAway(), game.getHome(), game.getPrimetime())
+                
                 if (crewName == Constants.NO_GAME_ASSIGNED):
                     unassignedGameList.append(game)
                 else:
-                    self.updateCrewSchedule(crewName, game) 
-                    #crewList.pop(crewName)                   
+                    self.updateCrewSchedule(crewName, game)                   
+                    crewList.remove(crewName)                   
  
-            # Assign non-primetime games next
+            # Assign non-primetime games last
             for game in nonPrimetimeGames:
-                crewName = self.findBestCrew(game.getWeek(), game.getAway(), game.getHome())
+                crewName = self.findBestCrew(crewList, game.getWeek(), game.getAway(), game.getHome())
+                
                 if (crewName == Constants.NO_GAME_ASSIGNED):
                     unassignedGameList.append(game)
                 else:
                     self.updateCrewSchedule(crewName, game) 
-                    #crewList.pop(crewName)
+                    crewList.remove(crewName)
 
             #TODO - find assignment for any unassigned games
             for game in unassignedGameList:
@@ -124,27 +141,21 @@ class Schedule(object):
           #  for crew in crewList:
           #      self.updateCrewSchedule(crewName, None)
 
-
-    def updateCrewSchedule(self, crewName, game):
-        if (crewName != None):
-            self.crewStore.updateCrew(crewName, game)
-            self.gameStore.updateGame(game.getWeek(), game, crewName)
-       # else:
-        #    self.crewStore.assignOff(crewName)
-
-        
-    def findBestCrew(self, week, away, home, primetime=None):
-        crewList = self.getRandomCrewList()
-        rankings = {Constants.MIN_RANKING: [], Constants.LOW_RANKING: [], Constants.MED_RANKING: [], Constants.HIGH_RANKING: [], Constants.MAX_RANKING: []}
  
+    """ Determine the best crew for the game """       
+    def findBestCrew(self, crewList, week, away, home, primetime=None):
+        rankingCategories = {Constants.NOT_ALLOWED: [], Constants.MIN_RANKING: [], Constants.LOW_RANKING: [], Constants.MED_RANKING: [], Constants.HIGH_RANKING: [], Constants.MAX_RANKING: []}
+ 
+        # Iterate through each crew and determine their ranking for this game
         for crew in crewList:
             ranking = self.getCrews()[crew].getRanking(week, away, home, primetime)
-            if (ranking != Constants.NOT_ALLOWED):
-                rankings[ranking].append(crew)
-        return self.parseRankings(rankings) 
+            rankingCategories[ranking].append(crew)
+        return self.getBestRanking(rankingCategories) 
 
 
-    def parseRankings(self, rankings):
+    """ Find highest ranked crew for this game """
+    def getBestRanking(self, rankings):
+        print("RANKINGS: {}".format(rankings))
         if (rankings[Constants.MAX_RANKING] != []):
             return rankings[Constants.MAX_RANKING][0]
         elif(rankings[Constants.HIGH_RANKING] != []):
@@ -156,4 +167,13 @@ class Schedule(object):
         elif(rankings[Constants.MIN_RANKING] != []):
             return rankings[Constants.MIN_RANKING][0]
         else:           
-            return Constants.NO_GAME_ASSIGNED
+            return rankings[Constants.NOT_ALLOWED][0]
+        
+        
+    """ Assign game to crew and update data store """
+    def updateCrewSchedule(self, crewName, game):
+        if (crewName != None):
+            self.crewStore.updateCrew(crewName, game)
+            self.gameStore.updateGame(game.getWeek(), game, crewName)
+       # else:
+        #    self.crewStore.assignOff(crewName)

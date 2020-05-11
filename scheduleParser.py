@@ -104,13 +104,17 @@ def fetchGames(week):
         print("{} @ {} - {} {}".format(game['away'], game['home'], game['tv'], game['specialEventNotes'] if (game['specialEventNotes'] != 'N/A') else ""))
 
 
+""" Main routine for generating assignements """ 
 def processSchedule():
     return Schedule.Schedule()
 
 
+""" Routine for fetching the list of crews """ 
 def fetchCrews():
     crewInfo = CrewInfo.CrewInfo()
     
+    
+""" Lambda response format """
 def respond(err, res=None):
     return {
         'statusCode': '400' if err else '200',
@@ -119,7 +123,9 @@ def respond(err, res=None):
             'Content-Type': 'application/json',
         },
     }
-
+    
+    
+""" Entry point for API GW -> lambda invocation """ 
 def handler(event, context): 
     print("{} - {}".format(event, context))
     schedule = processSchedule()
@@ -127,10 +133,11 @@ def handler(event, context):
     return respond(None, json.loads(parser.fetchFullCrewListAsJSON()))
 
 
+""" Main driver """ 
 if __name__ == '__main__':
     #parseAndStore()    
     schedule = processSchedule()
     parser = JSONParser.JSONParser(schedule.getGames(), schedule.getCrews())
-   # print(parser.fetchWeekAsJSON(1))
-    print(parser.fetchCrewAsJSON("MARTIN"))
+    #print(parser.fetchWeekAsJSON(1))
+    #print(parser.fetchFullCrewListAsJSON())
     
