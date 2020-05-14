@@ -26,3 +26,7 @@ class CrewInfo(object):
 
     def updateCrew(self, crewName, game):
         self.crews[crewName].addGameToSchedule(game)
+        
+        
+    def assignOff(self, crewName, week):
+        self.crews[crewName].addOffWeekToSchedule(week)

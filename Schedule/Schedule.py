@@ -14,7 +14,7 @@ class Schedule(object):
         self.crewStore = self.loadCrews()
         self.gameStore = self.loadGames()
         self.processSchedule()
-       # self.runTest()
+        self.runTest()
 
 
     """ tester """ 
@@ -121,7 +121,7 @@ class Schedule(object):
                 if (crewName == Constants.NO_GAME_ASSIGNED):
                     unassignedGameList.append(game)
                 else:
-                    self.updateCrewSchedule(crewName, game)                   
+                    self.updateCrewSchedule(crewName, week, game)                   
                     crewList.remove(crewName)                   
  
             # Assign non-primetime games last
@@ -131,7 +131,7 @@ class Schedule(object):
                 if (crewName == Constants.NO_GAME_ASSIGNED):
                     unassignedGameList.append(game)
                 else:
-                    self.updateCrewSchedule(crewName, game) 
+                    self.updateCrewSchedule(crewName, week, game) 
                     crewList.remove(crewName)
 
             #TODO - find assignment for any unassigned games
@@ -144,10 +144,12 @@ class Schedule(object):
                         print("COULDNT SWAP WITH: {}".format(crew))                        
                     else:
                         print(" ***** SWAPPED WITH: {}".format(crewName))
+                        crewList.remove(crew)
                         break
 
-          #  for crew in crewList:
-          #      self.updateCrewSchedule(crewName, None)
+            for crew in crewList:
+                print("W{} - ASSIGNING OFF TO: {} ({})".format(week, crew, self.getCrews()[crew].getTotalOff()))
+                self.updateCrewSchedule(crewName, week, None)
 
  
     def findBestCrewAndSwap(self, inputCrew, game):
@@ -160,11 +162,11 @@ class Schedule(object):
                     if (inputCrewRanking != Constants.NOT_ALLOWED):
                         iterCrewRanking = self.getCrews()[crew].getRanking(game.getWeek(), game.getAway(), game.getHome(), game.getPrimetime() if game.getPrimetime() != None else None) 
                         if (iterCrewRanking != Constants.NOT_ALLOWED):
-                            self.updateCrewSchedule(crew, game)
-                            self.updateCrewSchedule(inputCrew, removedGame)
+                            self.updateCrewSchedule(crew, game.getWeek(), game)
+                            self.updateCrewSchedule(inputCrew, removedGame.getWeek(), removedGame)
                             return crew
                         else:
-                            self.updateCrewSchedule(crew, removedGame)
+                            self.updateCrewSchedule(crew, removedGame.getWeek(), removedGame)
         return Constants.NO_GAME_ASSIGNED
     
     
@@ -186,7 +188,7 @@ class Schedule(object):
         elif(rankings[Constants.HIGH_RANKING] != []):
             return rankings[Constants.HIGH_RANKING][0]
         elif(rankings[Constants.MED_RANKING] != []):
-            return rankings[Constants.HIGH_RANKING][0]
+            return rankings[Constants.MED_RANKING][0]
         elif(rankings[Constants.LOW_RANKING] != []):
             return rankings[Constants.LOW_RANKING][0]    
         elif(rankings[Constants.MIN_RANKING] != []):
@@ -196,9 +198,9 @@ class Schedule(object):
         
         
     """ Assign game to crew and update data store """
-    def updateCrewSchedule(self, crewName, game):
-        if (crewName != None):
+    def updateCrewSchedule(self, crewName, week, game):
+        if (crewName != None and game != None):
             self.crewStore.updateCrew(crewName, game)
             self.gameStore.updateGame(game.getWeek(), game, crewName)
-       # else:
-        #    self.crewStore.assignOff(crewName)
+        else:
+            self.crewStore.assignOff(crewName, week)

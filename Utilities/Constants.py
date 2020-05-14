@@ -1,17 +1,28 @@
 """
 Constants.py
 """
+
+""" Team Information """
 ALL_TEAMS = ['PHI', 'NYG', 'WAS', 'DAL', 'MIN', 'GB', 'DET', 'CHI', 'TB', 'ATL', 'CAR', 'NO', 'LAR', 'SF', 'ARZ', 'SEA', 'MIA', 'NYJ', 'NE', 'BUF', 'BAL', 'CIN', 'CLE', 'PIT', 'IND', 'HOU', 'TEN', 'JAX', 'LAS', 'KC', 'DEN', 'LAC']
 
 FOX_TEAMS = ['PHI', 'NYG', 'WAS', 'DAL', 'MIN', 'GB', 'DET', 'CHI', 'TB', 'ATL', 'CAR', 'NO', 'LAR', 'SF', 'ARZ', 'SEA']
 CBS_TEAMS = ['MIA', 'NYJ', 'NE', 'BUF', 'BAL', 'CIN', 'CLE', 'PIT', 'IND', 'HOU', 'TEN', 'JAX', 'LAS', 'KC', 'DEN', 'LAC']
 
+EAST_TEAMS = ['PHI', 'NYG', 'WAS', 'TB', 'ATL', 'CAR', 'MIA', 'NYJ', 'NE', 'BUF', 'BAL', 'JAX']
+CENTRAL_TEAMS = ['DAL', 'MIN', 'GB', 'DET', 'CHI', 'NO', 'CIN', 'CLE', 'PIT', 'IND', 'HOU', 'TEN', 'KC']
+WEST_TEAMS = ['LAR', 'SF', 'ARZ', 'SEA', 'LAS', 'KC', 'LAC' ]
+
+EAST_REGION = 'EAST'
+CENTRAL_REGION = 'CENTRAL'
+WEST_REGION = 'WEST'
+
+
+""" TV Information """
 CBS = "CBS"
 FOX = "FOX"
 NBC = "NBC"
 ESPN = "ESPN"
 NFLN = "NFLN"
-
 THNF = "THNF"
 SNF = "SNF"
 MNF = "MNF"
