@@ -3,7 +3,7 @@ from json import JSONEncoder
 import Utilities.Constants as Constants
 
 class Game(object):
-    def __init__(self, week, away, home, tv, notes):
+    def __init__(self, week, away=None, home=None, tv=None, notes=None):
         self.week = week
         self.away = away
         self.home = home
@@ -41,6 +41,9 @@ class Game(object):
 
     def getCrew(self):
         return self.crew
+
+    def isEmpty(self):
+        return True if (self.home == Constants.WEEK_OFF or self.away == Constants.WEEK_OFF) else False
 
     def printGame(self):
         print("W{} - {} @ {}".format(self.getWeek(), self.getAway(), self.getHome()))

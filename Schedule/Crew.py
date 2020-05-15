@@ -76,7 +76,7 @@ class Crew(object):
 
     """ check if extra primetime games are allowed for this crew """
     def isExtraPrimetimeAllowed(self):
-        extraPrimetimeStr =  "multipleAllowed"
+        extraPrimetimeStr = "multipleAllowed"
         if (extraPrimetimeStr in self.rules and self.rules[extraPrimetimeStr] == "true"):
             return True
         else:
@@ -109,7 +109,7 @@ class Crew(object):
 
     def removeGameFromSchedule(self, week):
         game = self.schedule[str(week)]
-        if (game != None and game != Constants.NO_GAME_ASSIGNED):
+        if (game != None and game != Constants.NO_GAME_ASSIGNED and game.isEmpty() != True):
             self.schedule[str(week)] = Constants.NO_GAME_ASSIGNED
             self.homeCount[game.getHome()] = self.homeCount[game.getHome()] - 1
             self.awayCount[game.getAway()] = self.awayCount[game.getAway()] - 1
@@ -123,10 +123,10 @@ class Crew(object):
         return None
 
 
-    def addOffWeekToSchedule(self, week):
-       # self.schedule[week] = Game.Game(Constants.WEEK_OFF, Constants.WEEK_OFF, None, None, None)
+    def addOffWeekToSchedule(self, week):        
+        self.getSchedule()[str(week)] = Game.Game(week, Constants.WEEK_OFF, Constants.WEEK_OFF)
         self.totalOff +=1
-
+        
 
     def isAssigned(self, week):
         if (int(week) > 0):
@@ -138,7 +138,6 @@ class Crew(object):
         if (int(week) > 1):
             lowerBound = int(week) - threshold if (int(week) - threshold > 0) else 1
             upperBound = int(week)
-
             for prev in range(lowerBound, upperBound):
                 if (str(prev) in self.schedule and self.schedule[str(prev)] != Constants.NO_GAME_ASSIGNED):
                     if (self.schedule[str(prev)].getAway() == team or self.schedule[str(prev)].getHome() == team):
@@ -161,7 +160,6 @@ class Crew(object):
     def hadOnlyOneTeam(self, home, away):
         homeTeamCount = self.homeCount[home] + self.awayCount[home]
         awayTeamCount = self.homeCount[away] + self.awayCount[away]
-        
         if (homeTeamCount > 0 and awayTeamCount == 0):
             return True
         elif (homeTeamCount == 0 and awayTeamCount > 0):
@@ -197,11 +195,18 @@ class Crew(object):
 
 
     def isDueForOff(self, week):
-        if (self.isAssigned(str(int(week)-1)) == True):
-            if (int(week) > 4 and int(week) <= Constants.HALF_SEASON):
+        intWeek = int(week)
+        if (intWeek == 0):
+            return True        
+        if (self.getTotalOff() >= Constants.MAX_OFF_WEEKS): 
+            return False            
+        if (self.isAssigned(str(intWeek-1)) == True):
+            if (intWeek < 8):
                 return True if self.getTotalOff() == 0 else False
-            elif (int(week) > 12 and int(week) < Constants.FULL_SEASON):
+            elif (intWeek < 17):
                 return True if self.getTotalOff() < 2 else False
+            else:
+                return False
         else:
             return False
         
