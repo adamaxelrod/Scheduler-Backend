@@ -95,7 +95,8 @@ class Crew(object):
                         
         
     def addGameToSchedule(self, game):
-        self.schedule[str(game.getWeek())] = game
+        week = str(game.getWeek())
+        self.schedule[week] = game
         self.homeCount[game.getHome()] = self.homeCount[game.getHome()] + 1
         self.awayCount[game.getAway()] = self.awayCount[game.getAway()] + 1
         if (game.getPrimetime() == Constants.SNF):
@@ -104,12 +105,11 @@ class Crew(object):
             self.primetime[Constants.MNF] +=1
         elif(game.getPrimetime() == Constants.THNF):
             self.primetime[Constants.THNF] +=1
-            
+  
 
     def removeGameFromSchedule(self, week):
         game = self.schedule[str(week)]
         self.schedule[str(week)] = Constants.NO_GAME_ASSIGNED
-        
         if (game != None and game != Constants.NO_GAME_ASSIGNED and game.isEmpty() != True):
             self.schedule[str(week)] = Constants.NO_GAME_ASSIGNED
             self.homeCount[game.getHome()] = self.homeCount[game.getHome()] - 1
@@ -131,7 +131,7 @@ class Crew(object):
 
     def isAssigned(self, week):
         if (int(week) > 0):
-            return True if self.schedule[week] != Constants.NO_GAME_ASSIGNED else False 
+            return True if (self.schedule[week] != Constants.NO_GAME_ASSIGNED and self.isCrewOff(week) == False) else False 
         return False
     
     
