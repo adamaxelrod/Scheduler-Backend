@@ -19,14 +19,16 @@ class JSONParser(object):
             gameListByCrew = []
             for week in self.gameListByCrew[crew].getSchedule().items():
                 game = week[1]
+                
                 if (game != Constants.NO_GAME_ASSIGNED and game.getAway() != Constants.WEEK_OFF):
                     gameJson = {"crew": game.getCrew(), "game": game.getAway() + " @ " + game.getHome(), "week": game.getWeek(), "tv": game.getTv(), "primetime": game.getPrimetime(), "notes": game.getNotes()}
                 elif (game == Constants.NO_GAME_ASSIGNED):
-                     gameJson = {"game": "UNASSIGNED", "week": week[0], "tv": "", "primetime": "", "notes": ""}                      
+                    gameJson = {"crew": crew, "game": "UNASSIGNED", "week": week[0], "tv": "", "primetime": "", "notes": ""}
                 else:
-                    gameJson = {"game": "OFF", "week": week[0], "tv": "", "primetime": "", "notes": ""}   
-                
+                    gameJson = {"crew": crew, "game": "OFF", "week": week[0], "tv": "", "primetime": "", "notes": ""}
+
                 gameListByCrew.append(gameJson)
+            
             crewSchedule = { crew : gameListByCrew }
             print(crewSchedule)
             fullSchedule.update(crewSchedule)
