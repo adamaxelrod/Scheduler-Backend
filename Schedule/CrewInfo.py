@@ -5,12 +5,12 @@ import Utilities.Constants as Constants
 from boto3.dynamodb.conditions import Key, Attr
 
 class CrewInfo(object):
-    def __init__(self):
+    def __init__(self) -> None:
         self.crews = {}
         self.fetchCrewInfo()
 
 
-    def fetchCrewInfo(self):
+    def fetchCrewInfo(self) -> None:
         dynamodb = boto3.resource('dynamodb', region_name=Constants.AWS_REGION)
         table = dynamodb.Table(Constants.TABLE_CREWINFO_2020)
         response = table.scan()
@@ -24,9 +24,9 @@ class CrewInfo(object):
         return self.crews
 
 
-    def updateCrew(self, crewName, game):
+    def updateCrew(self, crewName, game) -> None:
         self.crews[crewName].addGameToSchedule(game)
         
         
-    def assignOff(self, crewName, week):
+    def assignOff(self, crewName, week) -> None:
         self.crews[crewName].addOffWeekToSchedule(week)

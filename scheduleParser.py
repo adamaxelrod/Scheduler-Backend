@@ -9,7 +9,7 @@ from boto3.dynamodb.conditions import Key, Attr
 import Schedule.CrewInfo as CrewInfo
 
 """ Return TV host for corresponding away team """
-def getTVForTeam(away):
+def getTVForTeam(away: str) -> str:
     if (away in Constants.FOX_TEAMS):
         return Constants.FOX
     elif (away in Constants.CBS_TEAMS):
@@ -38,7 +38,7 @@ def fetchTV(event, away):
 
 
 """ Persist the game information in the database """
-def store(week, away, home, event="N/A"):
+def store(week, away, home, event: str="N/A") -> None:
     try:
         print('Week: {} {} @ {} - {} ({})'.format(week, away, home, event, fetchTV(event, away)))
         dynamodb = boto3.resource('dynamodb', region_name=Constants.AWS_REGION)
@@ -56,7 +56,7 @@ def store(week, away, home, event="N/A"):
  
 
 """ Parse the schedule CSV and store it """
-def parseAndStore():
+def parseAndStore() -> None:
     with open(Constants.SCHEDULE_FILE, mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
 
@@ -95,7 +95,7 @@ def parseAndStore():
 
 
 """ Query for games """ 
-def fetchGames(week):
+def fetchGames(week) -> None:
     dynamodb = boto3.resource('dynamodb', region_name=Constants.AWS_REGION)
     table = dynamodb.Table(Constants.TABLE_SCHEDULE_2020)
     response = table.scan(FilterExpression=Key('week').eq(week))
@@ -105,12 +105,12 @@ def fetchGames(week):
 
 
 """ Main routine for generating assignements """ 
-def processSchedule():
+def processSchedule() -> Schedule.Schedule:
     return Schedule.Schedule()
 
 
 """ Routine for fetching the list of crews """ 
-def fetchCrews():
+def fetchCrews() -> None:
     crewInfo = CrewInfo.CrewInfo()
     
     

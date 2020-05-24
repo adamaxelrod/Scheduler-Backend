@@ -10,15 +10,15 @@ from boto3.dynamodb.conditions import Key, Attr
 
 
 class Schedule(object):
-    def __init__(self):
+    def __init__(self) -> None:
         self.crewStore = self.loadCrews()
         self.gameStore = self.loadGames()
         self.processSchedule()
-        self.runTest()
+        #self.runTest()
 
 
     """ tester """ 
-    def runTest(self):
+    def runTest(self) -> None:
         #self.printGamesForCrew("HOCHULI")
         #self.printGamesForCrew("CORRENTE")
         # self.printGamesForWeek(1)
@@ -28,7 +28,7 @@ class Schedule(object):
 
 
     """ Print all crews test function """ 
-    def printAllCrews(self):
+    def printAllCrews(self) -> None:
         with open(Constants.SCHEDULE_OUTPUT, 'w') as f:
             for key in self.getCrews().keys():
                 schedule = self.getCrews()[key].getSchedule()
@@ -48,7 +48,7 @@ class Schedule(object):
         
         
     """ Print all games for week test function """ 
-    def printGamesForWeek(self, week):
+    def printGamesForWeek(self, week) -> None:
         weekGames = self.getGames()[str(week)]
         crewList = {}
         for game in weekGames:
@@ -61,7 +61,7 @@ class Schedule(object):
 
 
     """ Print all games for crew test function """
-    def printGamesForCrew(self, crewName):
+    def printGamesForCrew(self, crewName) -> None:
         crewSchedule = self.getCrews()[crewName].getSchedule()
 
         for i in range(1, 18):
@@ -77,11 +77,11 @@ class Schedule(object):
         print("Total Games by Team: {}".format(self.getCrews()[crewName].getHomeCount()))
 
 
-    def loadCrews(self):
+    def loadCrews(self) -> CrewInfo.CrewInfo:
         return CrewInfo.CrewInfo()
         
 
-    def loadGames(self):
+    def loadGames(self) -> GameInfo.GameInfo:
         return GameInfo.GameInfo()
 
 
@@ -100,7 +100,7 @@ class Schedule(object):
 
 
     """ Main scheduling algorithm """
-    def processSchedule(self):
+    def processSchedule(self) -> None:
         # Iterate through all weeks of the season
         for i in range(1, Constants.FULL_SEASON+1):
             week = i
@@ -221,7 +221,7 @@ class Schedule(object):
         
         
     """ Assign game to crew and update data store """
-    def updateCrewSchedule(self, crewName, week, game):
+    def updateCrewSchedule(self, crewName, week, game) -> None:
         if (crewName != None and game != None):
             self.crewStore.updateCrew(crewName, game)
             self.gameStore.updateGame(game.getWeek(), game, crewName)

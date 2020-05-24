@@ -1,17 +1,18 @@
 import json
-import Utilities.Constants as Constants
+from Utilities import Constants
+import Schedule
 from Schedule.Game import GameEncoder
 from Schedule.Crew import CrewEncoder
 
 class JSONParser(object):
-    def __init__(self, gameList, gameListByCrew):
+    def __init__(self, gameList, gameListByCrew) -> None:
         self.gameList = gameList
         self.gameListByCrew = gameListByCrew
 
-    def fetchWeekAsJSON(self, week):
+    def fetchWeekAsJSON(self, week) -> str:
         return json.dumps(self.gameList[str(week)], cls=GameEncoder, indent=4)
              
-    def fetchFullCrewListAsJSON(self):
+    def fetchFullCrewListAsJSON(self) -> str:
         fullSchedule = {}
         crewList = ["CORRENTE", "VINOVICH", "BOGER", "CHEFFERS", "BLAKEMAN", "WROLSTAD", "TORBERT", "ALLEN", "HUSSEY", "HOCHULI", "KEMP", "MARTIN", "SMITH", "HILL", "NOVAK", "ROGERS", "CLARK"]
         

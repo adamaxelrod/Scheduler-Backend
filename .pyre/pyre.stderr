@@ -1,0 +1,409 @@
+2020-05-23 21:05:57,344 INFO Constructing shared directory `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/shared_analysis_directory_61221`
+2020-05-23 21:05:57,347 ERROR No targets or source directories to analyze.
+Did you mean to run the command within a Pyre project?
+(A Pyre project is a directory with a `.pyre_configuration.local` file.
+If it is in directory foo/, you can also run `pyre -l foo`.)
+See `pyre --help` for more details.
+
+2020-05-23 21:06:33,156 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser/Schedule -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser/Schedule`
+2020-05-23 21:06:33,164 DEBUG Registering process with pid 61242 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61242.pid`
+2020-05-23 21:06:33,515 PERFORMANCE Module tracker built: 0.068488s
+2020-05-23 21:06:33,515 INFO Parsing 932 stubs and sources...
+2020-05-23 21:06:35,615 PERFORMANCE Sources parsed: 2.100745s
+2020-05-23 21:06:35,615 INFO Building type environment...
+2020-05-23 21:06:36,153 INFO Updating is from empty stub result Environment
+2020-05-23 21:06:36,154 INFO Updating Alias Environment
+2020-05-23 21:06:36,154 INFO Updating Edges Environment
+2020-05-23 21:06:36,154 INFO Updating Undecorated functions Environment
+2020-05-23 21:06:36,154 INFO Updating Class metadata Environment
+2020-05-23 21:06:36,154 INFO Updating parse annotation Environment
+2020-05-23 21:06:36,154 INFO Updating attributes Environment
+2020-05-23 21:06:36,154 INFO Updating Global Environment
+2020-05-23 21:06:36,154 INFO Updating Global Locations Environment
+2020-05-23 21:06:36,154 PERFORMANCE Full environment built: 0.538838s
+2020-05-23 21:06:36,293 INFO Checking 81 functions...
+2020-05-23 21:06:36,415 INFO Processed 41 of 81 functions
+2020-05-23 21:06:36,529 INFO Processed 81 of 81 functions
+2020-05-23 21:06:36,529 PERFORMANCE Check_TypeCheck: 0.235483s
+2020-05-23 21:06:36,529 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:06:36,529 INFO Postprocessing 932 sources...
+2020-05-23 21:06:36,578 INFO Postprocessed 234 of 932 sources
+2020-05-23 21:06:36,626 INFO Postprocessed 468 of 932 sources
+2020-05-23 21:06:36,676 INFO Postprocessed 702 of 932 sources
+2020-05-23 21:06:36,726 INFO Postprocessed 932 of 932 sources
+2020-05-23 21:06:36,727 PERFORMANCE Check: 3.296893s
+2020-05-23 21:06:36,732 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61242.pid`
+2020-05-23 21:06:36,742 ERROR Found 14 type errors!
+
+2020-05-23 21:07:15,109 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser/Schedule -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser/Schedule`
+2020-05-23 21:07:15,120 DEBUG Registering process with pid 61306 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61306.pid`
+2020-05-23 21:07:15,224 PERFORMANCE Module tracker built: 0.076450s
+2020-05-23 21:07:15,225 INFO Parsing 932 stubs and sources...
+2020-05-23 21:07:17,298 PERFORMANCE Sources parsed: 2.073416s
+2020-05-23 21:07:17,298 INFO Building type environment...
+2020-05-23 21:07:17,849 INFO Updating is from empty stub result Environment
+2020-05-23 21:07:17,849 INFO Updating Alias Environment
+2020-05-23 21:07:17,849 INFO Updating Edges Environment
+2020-05-23 21:07:17,850 INFO Updating Undecorated functions Environment
+2020-05-23 21:07:17,850 INFO Updating Class metadata Environment
+2020-05-23 21:07:17,850 INFO Updating parse annotation Environment
+2020-05-23 21:07:17,850 INFO Updating attributes Environment
+2020-05-23 21:07:17,850 INFO Updating Global Environment
+2020-05-23 21:07:17,850 INFO Updating Global Locations Environment
+2020-05-23 21:07:17,850 PERFORMANCE Full environment built: 0.551184s
+2020-05-23 21:07:17,989 INFO Checking 81 functions...
+2020-05-23 21:07:18,109 INFO Processed 41 of 81 functions
+2020-05-23 21:07:18,221 INFO Processed 81 of 81 functions
+2020-05-23 21:07:18,221 PERFORMANCE Check_TypeCheck: 0.231359s
+2020-05-23 21:07:18,221 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:07:18,221 INFO Postprocessing 932 sources...
+2020-05-23 21:07:18,270 INFO Postprocessed 234 of 932 sources
+2020-05-23 21:07:18,316 INFO Postprocessed 468 of 932 sources
+2020-05-23 21:07:18,365 INFO Postprocessed 702 of 932 sources
+2020-05-23 21:07:18,414 INFO Postprocessed 932 of 932 sources
+2020-05-23 21:07:18,415 PERFORMANCE Check: 3.269638s
+2020-05-23 21:07:18,420 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61306.pid`
+2020-05-23 21:07:18,427 ERROR Found 13 type errors!
+
+2020-05-23 21:07:29,775 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser/Schedule -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser/Schedule`
+2020-05-23 21:07:29,781 DEBUG Registering process with pid 61368 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61368.pid`
+2020-05-23 21:07:29,882 PERFORMANCE Module tracker built: 0.071391s
+2020-05-23 21:07:29,882 INFO Parsing 932 stubs and sources...
+2020-05-23 21:07:31,928 PERFORMANCE Sources parsed: 2.047211s
+2020-05-23 21:07:31,928 INFO Building type environment...
+2020-05-23 21:07:32,490 INFO Updating is from empty stub result Environment
+2020-05-23 21:07:32,492 INFO Updating Alias Environment
+2020-05-23 21:07:32,492 INFO Updating Edges Environment
+2020-05-23 21:07:32,492 INFO Updating Undecorated functions Environment
+2020-05-23 21:07:32,493 INFO Updating Class metadata Environment
+2020-05-23 21:07:32,493 INFO Updating parse annotation Environment
+2020-05-23 21:07:32,493 INFO Updating attributes Environment
+2020-05-23 21:07:32,493 INFO Updating Global Environment
+2020-05-23 21:07:32,493 INFO Updating Global Locations Environment
+2020-05-23 21:07:32,493 PERFORMANCE Full environment built: 0.562483s
+2020-05-23 21:07:32,623 INFO Checking 81 functions...
+2020-05-23 21:07:32,738 INFO Processed 41 of 81 functions
+2020-05-23 21:07:32,850 INFO Processed 81 of 81 functions
+2020-05-23 21:07:32,850 PERFORMANCE Check_TypeCheck: 0.226738s
+2020-05-23 21:07:32,850 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:07:32,850 INFO Postprocessing 932 sources...
+2020-05-23 21:07:32,900 INFO Postprocessed 234 of 932 sources
+2020-05-23 21:07:32,947 INFO Postprocessed 468 of 932 sources
+2020-05-23 21:07:32,996 INFO Postprocessed 702 of 932 sources
+2020-05-23 21:07:33,044 INFO Postprocessed 932 of 932 sources
+2020-05-23 21:07:33,047 PERFORMANCE Check: 3.238058s
+2020-05-23 21:07:33,050 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61368.pid`
+2020-05-23 21:07:33,059 ERROR Found 13 type errors!
+
+2020-05-23 21:08:03,700 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser/Utilities -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser/Utilities`
+2020-05-23 21:08:03,707 DEBUG Registering process with pid 61427 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61427.pid`
+2020-05-23 21:08:03,815 PERFORMANCE Module tracker built: 0.074222s
+2020-05-23 21:08:03,816 INFO Parsing 929 stubs and sources...
+2020-05-23 21:08:05,892 PERFORMANCE Sources parsed: 2.077124s
+2020-05-23 21:08:05,892 INFO Building type environment...
+2020-05-23 21:08:06,419 INFO Updating is from empty stub result Environment
+2020-05-23 21:08:06,419 INFO Updating Alias Environment
+2020-05-23 21:08:06,419 INFO Updating Edges Environment
+2020-05-23 21:08:06,419 INFO Updating Undecorated functions Environment
+2020-05-23 21:08:06,420 INFO Updating Class metadata Environment
+2020-05-23 21:08:06,420 INFO Updating parse annotation Environment
+2020-05-23 21:08:06,420 INFO Updating attributes Environment
+2020-05-23 21:08:06,420 INFO Updating Global Environment
+2020-05-23 21:08:06,420 INFO Updating Global Locations Environment
+2020-05-23 21:08:06,420 PERFORMANCE Full environment built: 0.527400s
+2020-05-23 21:08:06,554 INFO Checking 6 functions...
+2020-05-23 21:08:06,590 INFO Processed 6 of 6 functions
+2020-05-23 21:08:06,590 PERFORMANCE Check_TypeCheck: 0.035188s
+2020-05-23 21:08:06,590 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:08:06,590 INFO Postprocessing 929 sources...
+2020-05-23 21:08:06,638 INFO Postprocessed 233 of 929 sources
+2020-05-23 21:08:06,685 INFO Postprocessed 466 of 929 sources
+2020-05-23 21:08:06,737 INFO Postprocessed 699 of 929 sources
+2020-05-23 21:08:06,790 INFO Postprocessed 929 of 929 sources
+2020-05-23 21:08:06,793 PERFORMANCE Check: 3.053092s
+2020-05-23 21:08:06,798 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61427.pid`
+2020-05-23 21:08:06,804 ERROR Found 2 type errors!
+
+2020-05-23 21:10:00,736 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser/Utilities -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser/Utilities`
+2020-05-23 21:10:00,743 DEBUG Registering process with pid 61500 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61500.pid`
+2020-05-23 21:10:01,159 PERFORMANCE Module tracker built: 0.071502s
+2020-05-23 21:10:01,164 INFO Parsing 929 stubs and sources...
+2020-05-23 21:10:03,985 PERFORMANCE Sources parsed: 2.820018s
+2020-05-23 21:10:03,985 INFO Building type environment...
+2020-05-23 21:10:04,522 INFO Updating is from empty stub result Environment
+2020-05-23 21:10:04,522 INFO Updating Alias Environment
+2020-05-23 21:10:04,522 INFO Updating Edges Environment
+2020-05-23 21:10:04,522 INFO Updating Undecorated functions Environment
+2020-05-23 21:10:04,523 INFO Updating Class metadata Environment
+2020-05-23 21:10:04,524 INFO Updating parse annotation Environment
+2020-05-23 21:10:04,524 INFO Updating attributes Environment
+2020-05-23 21:10:04,524 INFO Updating Global Environment
+2020-05-23 21:10:04,524 INFO Updating Global Locations Environment
+2020-05-23 21:10:04,525 PERFORMANCE Full environment built: 0.536509s
+2020-05-23 21:10:04,658 INFO Checking 6 functions...
+2020-05-23 21:10:04,696 INFO Processed 6 of 6 functions
+2020-05-23 21:10:04,696 PERFORMANCE Check_TypeCheck: 0.038160s
+2020-05-23 21:10:04,696 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:10:04,696 INFO Postprocessing 929 sources...
+2020-05-23 21:10:04,744 INFO Postprocessed 233 of 929 sources
+2020-05-23 21:10:04,792 INFO Postprocessed 466 of 929 sources
+2020-05-23 21:10:04,843 INFO Postprocessed 699 of 929 sources
+2020-05-23 21:10:04,893 INFO Postprocessed 929 of 929 sources
+2020-05-23 21:10:04,895 PERFORMANCE Check: 3.809005s
+2020-05-23 21:10:04,903 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61500.pid`
+2020-05-23 21:10:04,908 ERROR Found 1 type error!
+
+2020-05-23 21:13:33,040 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser/Utilities -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser/Utilities`
+2020-05-23 21:13:33,047 DEBUG Registering process with pid 61675 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61675.pid`
+2020-05-23 21:13:33,588 PERFORMANCE Module tracker built: 0.082935s
+2020-05-23 21:13:33,595 INFO Parsing 929 stubs and sources...
+2020-05-23 21:13:36,387 PERFORMANCE Sources parsed: 2.793302s
+2020-05-23 21:13:36,387 INFO Building type environment...
+2020-05-23 21:13:36,925 INFO Updating is from empty stub result Environment
+2020-05-23 21:13:36,925 INFO Updating Alias Environment
+2020-05-23 21:13:36,925 INFO Updating Edges Environment
+2020-05-23 21:13:36,925 INFO Updating Undecorated functions Environment
+2020-05-23 21:13:36,926 INFO Updating Class metadata Environment
+2020-05-23 21:13:36,926 INFO Updating parse annotation Environment
+2020-05-23 21:13:36,926 INFO Updating attributes Environment
+2020-05-23 21:13:36,926 INFO Updating Global Environment
+2020-05-23 21:13:36,926 INFO Updating Global Locations Environment
+2020-05-23 21:13:36,926 PERFORMANCE Full environment built: 0.537757s
+2020-05-23 21:13:37,058 INFO Checking 6 functions...
+2020-05-23 21:13:37,100 INFO Processed 6 of 6 functions
+2020-05-23 21:13:37,101 PERFORMANCE Check_TypeCheck: 0.041927s
+2020-05-23 21:13:37,101 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:13:37,101 INFO Postprocessing 929 sources...
+2020-05-23 21:13:37,153 INFO Postprocessed 233 of 929 sources
+2020-05-23 21:13:37,200 INFO Postprocessed 466 of 929 sources
+2020-05-23 21:13:37,251 INFO Postprocessed 699 of 929 sources
+2020-05-23 21:13:37,301 INFO Postprocessed 929 of 929 sources
+2020-05-23 21:13:37,303 PERFORMANCE Check: 3.802651s
+2020-05-23 21:13:37,311 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61675.pid`
+2020-05-23 21:13:37,315 ERROR Found 2 type errors!
+
+2020-05-23 21:13:52,081 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser/Utilities -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser/Utilities`
+2020-05-23 21:13:52,087 DEBUG Registering process with pid 61747 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61747.pid`
+2020-05-23 21:13:52,791 PERFORMANCE Module tracker built: 0.081272s
+2020-05-23 21:13:52,796 INFO Parsing 929 stubs and sources...
+2020-05-23 21:13:55,770 PERFORMANCE Sources parsed: 2.975870s
+2020-05-23 21:13:55,771 INFO Building type environment...
+2020-05-23 21:13:56,335 INFO Updating is from empty stub result Environment
+2020-05-23 21:13:56,336 INFO Updating Alias Environment
+2020-05-23 21:13:56,336 INFO Updating Edges Environment
+2020-05-23 21:13:56,336 INFO Updating Undecorated functions Environment
+2020-05-23 21:13:56,336 INFO Updating Class metadata Environment
+2020-05-23 21:13:56,336 INFO Updating parse annotation Environment
+2020-05-23 21:13:56,336 INFO Updating attributes Environment
+2020-05-23 21:13:56,336 INFO Updating Global Environment
+2020-05-23 21:13:56,336 INFO Updating Global Locations Environment
+2020-05-23 21:13:56,337 PERFORMANCE Full environment built: 0.565295s
+2020-05-23 21:13:56,472 INFO Checking 6 functions...
+2020-05-23 21:13:56,518 INFO Processed 6 of 6 functions
+2020-05-23 21:13:56,519 PERFORMANCE Check_TypeCheck: 0.045906s
+2020-05-23 21:13:56,519 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:13:56,519 INFO Postprocessing 929 sources...
+2020-05-23 21:13:56,573 INFO Postprocessed 233 of 929 sources
+2020-05-23 21:13:56,622 INFO Postprocessed 466 of 929 sources
+2020-05-23 21:13:56,676 INFO Postprocessed 699 of 929 sources
+2020-05-23 21:13:56,762 INFO Postprocessed 929 of 929 sources
+2020-05-23 21:13:56,763 PERFORMANCE Check: 4.056771s
+2020-05-23 21:13:56,766 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61747.pid`
+2020-05-23 21:13:56,776 ERROR Found 2 type errors!
+
+2020-05-23 21:14:57,761 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser/Utilities -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser/Utilities`
+2020-05-23 21:14:57,768 DEBUG Registering process with pid 61827 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61827.pid`
+2020-05-23 21:14:57,979 PERFORMANCE Module tracker built: 0.068811s
+2020-05-23 21:14:57,979 INFO Parsing 929 stubs and sources...
+2020-05-23 21:15:00,655 PERFORMANCE Sources parsed: 2.677981s
+2020-05-23 21:15:00,656 INFO Building type environment...
+2020-05-23 21:15:01,187 INFO Updating is from empty stub result Environment
+2020-05-23 21:15:01,187 INFO Updating Alias Environment
+2020-05-23 21:15:01,187 INFO Updating Edges Environment
+2020-05-23 21:15:01,187 INFO Updating Undecorated functions Environment
+2020-05-23 21:15:01,188 INFO Updating Class metadata Environment
+2020-05-23 21:15:01,188 INFO Updating parse annotation Environment
+2020-05-23 21:15:01,188 INFO Updating attributes Environment
+2020-05-23 21:15:01,188 INFO Updating Global Environment
+2020-05-23 21:15:01,188 INFO Updating Global Locations Environment
+2020-05-23 21:15:01,188 PERFORMANCE Full environment built: 0.531805s
+2020-05-23 21:15:01,325 INFO Checking 6 functions...
+2020-05-23 21:15:01,362 INFO Processed 6 of 6 functions
+2020-05-23 21:15:01,362 PERFORMANCE Check_TypeCheck: 0.037251s
+2020-05-23 21:15:01,363 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:15:01,363 INFO Postprocessing 929 sources...
+2020-05-23 21:15:01,411 INFO Postprocessed 233 of 929 sources
+2020-05-23 21:15:01,460 INFO Postprocessed 466 of 929 sources
+2020-05-23 21:15:01,512 INFO Postprocessed 699 of 929 sources
+2020-05-23 21:15:01,568 INFO Postprocessed 929 of 929 sources
+2020-05-23 21:15:01,568 PERFORMANCE Check: 3.660875s
+2020-05-23 21:15:01,578 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61827.pid`
+2020-05-23 21:15:01,582 ERROR Found 2 type errors!
+
+2020-05-23 21:15:19,907 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser`
+2020-05-23 21:15:19,913 DEBUG Registering process with pid 61879 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61879.pid`
+2020-05-23 21:15:20,026 PERFORMANCE Module tracker built: 0.082219s
+2020-05-23 21:15:20,026 INFO Parsing 937 stubs and sources...
+2020-05-23 21:15:22,160 PERFORMANCE Sources parsed: 2.133327s
+2020-05-23 21:15:22,160 INFO Building type environment...
+2020-05-23 21:15:22,728 INFO Updating is from empty stub result Environment
+2020-05-23 21:15:22,730 INFO Updating Alias Environment
+2020-05-23 21:15:22,730 INFO Updating Edges Environment
+2020-05-23 21:15:22,730 INFO Updating Undecorated functions Environment
+2020-05-23 21:15:22,730 INFO Updating Class metadata Environment
+2020-05-23 21:15:22,730 INFO Updating parse annotation Environment
+2020-05-23 21:15:22,730 INFO Updating attributes Environment
+2020-05-23 21:15:22,731 INFO Updating Global Environment
+2020-05-23 21:15:22,731 INFO Updating Global Locations Environment
+2020-05-23 21:15:22,731 PERFORMANCE Full environment built: 0.568192s
+2020-05-23 21:15:22,864 INFO Checking 99 functions...
+2020-05-23 21:15:23,012 INFO Processed 50 of 99 functions
+2020-05-23 21:15:23,138 INFO Processed 99 of 99 functions
+2020-05-23 21:15:23,138 PERFORMANCE Check_TypeCheck: 0.273739s
+2020-05-23 21:15:23,138 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:15:23,138 INFO Postprocessing 937 sources...
+2020-05-23 21:15:23,190 INFO Postprocessed 235 of 937 sources
+2020-05-23 21:15:23,239 INFO Postprocessed 470 of 937 sources
+2020-05-23 21:15:23,288 INFO Postprocessed 705 of 937 sources
+2020-05-23 21:15:23,338 INFO Postprocessed 937 of 937 sources
+2020-05-23 21:15:23,341 PERFORMANCE Check: 3.396473s
+2020-05-23 21:15:23,343 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-61879.pid`
+2020-05-23 21:15:23,351 ERROR Found 5 type errors!
+
+2020-05-23 21:16:36,217 PROMPT Also initialize a watchman configuration? [Y/n] 
+2020-05-23 21:16:39,441 INFO Binary found at `/usr/local/bin/pyre.bin`
+2020-05-23 21:16:39,442 DEBUG Trying with: `/usr/local/lib/python3.7/site-packages/pyre_check/client/pyre_check/typeshed/`
+2020-05-23 21:16:39,443 DEBUG Trying with: `/usr/local/lib/python3.7/site-packages/pyre_check/pyre_check/typeshed/`
+2020-05-23 21:16:39,443 DEBUG Trying with: `/usr/local/lib/python3.7/site-packages/pyre_check/typeshed/`
+2020-05-23 21:16:39,443 DEBUG Trying with: `/usr/local/lib/python3.7/pyre_check/typeshed/`
+2020-05-23 21:16:39,443 DEBUG Trying with: `/usr/local/lib/pyre_check/typeshed/`
+2020-05-23 21:16:39,443 DEBUG Trying with: `/usr/local/lib/python3.7/site-packages/pyre_check/client/pyre_check/taint/`
+2020-05-23 21:16:39,443 DEBUG Trying with: `/usr/local/lib/python3.7/site-packages/pyre_check/pyre_check/taint/`
+2020-05-23 21:16:39,443 DEBUG Trying with: `/usr/local/lib/python3.7/site-packages/pyre_check/taint/`
+2020-05-23 21:16:39,443 DEBUG Trying with: `/usr/local/lib/python3.7/pyre_check/taint/`
+2020-05-23 21:16:39,444 DEBUG Trying with: `/usr/local/lib/pyre_check/taint/`
+2020-05-23 21:16:39,444 PROMPT Which directory should pyre be initialized in? (Default: `.`): 
+2020-05-23 21:16:43,176 INFO Successfully initialized pyre! You can view the configuration at `/Users/adamaxelrod/Code/Schedule-Parser/.pyre_configuration`.
+2020-05-23 21:16:48,133 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser`
+2020-05-23 21:16:48,139 DEBUG Registering process with pid 62000 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-62000.pid`
+2020-05-23 21:16:48,692 PERFORMANCE Module tracker built: 0.078247s
+2020-05-23 21:16:48,699 INFO Parsing 937 stubs and sources...
+2020-05-23 21:16:51,543 PERFORMANCE Sources parsed: 2.844571s
+2020-05-23 21:16:51,543 INFO Building type environment...
+2020-05-23 21:16:52,083 INFO Updating is from empty stub result Environment
+2020-05-23 21:16:52,085 INFO Updating Alias Environment
+2020-05-23 21:16:52,085 INFO Updating Edges Environment
+2020-05-23 21:16:52,086 INFO Updating Undecorated functions Environment
+2020-05-23 21:16:52,086 INFO Updating Class metadata Environment
+2020-05-23 21:16:52,086 INFO Updating parse annotation Environment
+2020-05-23 21:16:52,086 INFO Updating attributes Environment
+2020-05-23 21:16:52,086 INFO Updating Global Environment
+2020-05-23 21:16:52,086 INFO Updating Global Locations Environment
+2020-05-23 21:16:52,086 PERFORMANCE Full environment built: 0.540922s
+2020-05-23 21:16:52,222 INFO Checking 99 functions...
+2020-05-23 21:16:52,377 INFO Processed 50 of 99 functions
+2020-05-23 21:16:52,500 INFO Processed 99 of 99 functions
+2020-05-23 21:16:52,500 PERFORMANCE Check_TypeCheck: 0.278056s
+2020-05-23 21:16:52,500 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:16:52,500 INFO Postprocessing 937 sources...
+2020-05-23 21:16:52,552 INFO Postprocessed 235 of 937 sources
+2020-05-23 21:16:52,599 INFO Postprocessed 470 of 937 sources
+2020-05-23 21:16:52,650 INFO Postprocessed 705 of 937 sources
+2020-05-23 21:16:52,700 INFO Postprocessed 937 of 937 sources
+2020-05-23 21:16:52,701 PERFORMANCE Check: 4.092558s
+2020-05-23 21:16:52,707 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-62000.pid`
+2020-05-23 21:16:52,713 ERROR Found 5 type errors!
+
+2020-05-23 21:17:26,473 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser`
+2020-05-23 21:17:26,480 DEBUG Registering process with pid 62066 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-62066.pid`
+2020-05-23 21:17:26,697 PERFORMANCE Module tracker built: 0.076378s
+2020-05-23 21:17:26,697 INFO Parsing 937 stubs and sources...
+2020-05-23 21:17:29,419 PERFORMANCE Sources parsed: 2.722406s
+2020-05-23 21:17:29,419 INFO Building type environment...
+2020-05-23 21:17:29,981 INFO Updating is from empty stub result Environment
+2020-05-23 21:17:29,982 INFO Updating Alias Environment
+2020-05-23 21:17:29,982 INFO Updating Edges Environment
+2020-05-23 21:17:29,982 INFO Updating Undecorated functions Environment
+2020-05-23 21:17:29,982 INFO Updating Class metadata Environment
+2020-05-23 21:17:29,982 INFO Updating parse annotation Environment
+2020-05-23 21:17:29,982 INFO Updating attributes Environment
+2020-05-23 21:17:29,982 INFO Updating Global Environment
+2020-05-23 21:17:29,983 INFO Updating Global Locations Environment
+2020-05-23 21:17:29,984 PERFORMANCE Full environment built: 0.561815s
+2020-05-23 21:17:30,128 INFO Checking 99 functions...
+2020-05-23 21:17:30,278 INFO Processed 50 of 99 functions
+2020-05-23 21:17:30,397 INFO Processed 99 of 99 functions
+2020-05-23 21:17:30,397 PERFORMANCE Check_TypeCheck: 0.268404s
+2020-05-23 21:17:30,397 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:17:30,397 INFO Postprocessing 937 sources...
+2020-05-23 21:17:30,446 INFO Postprocessed 235 of 937 sources
+2020-05-23 21:17:30,495 INFO Postprocessed 470 of 937 sources
+2020-05-23 21:17:30,546 INFO Postprocessed 705 of 937 sources
+2020-05-23 21:17:30,595 INFO Postprocessed 937 of 937 sources
+2020-05-23 21:17:30,596 PERFORMANCE Check: 3.979834s
+2020-05-23 21:17:30,602 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-62066.pid`
+2020-05-23 21:17:30,607 ERROR Found 4 type errors!
+
+2020-05-23 21:21:55,975 DEBUG Running `/usr/local/bin/pyre.bin check -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser -workers 1 -ignore-all-errors /Users/adamaxelrod/Code/Schedule-Parser/.pyre -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 /Users/adamaxelrod/Code/Schedule-Parser`
+2020-05-23 21:21:55,981 DEBUG Registering process with pid 62179 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-62179.pid`
+2020-05-23 21:21:56,527 PERFORMANCE Module tracker built: 0.094356s
+2020-05-23 21:21:56,534 INFO Parsing 937 stubs and sources...
+2020-05-23 21:21:59,339 PERFORMANCE Sources parsed: 2.806171s
+2020-05-23 21:21:59,339 INFO Building type environment...
+2020-05-23 21:21:59,878 INFO Updating is from empty stub result Environment
+2020-05-23 21:21:59,878 INFO Updating Alias Environment
+2020-05-23 21:21:59,878 INFO Updating Edges Environment
+2020-05-23 21:21:59,878 INFO Updating Undecorated functions Environment
+2020-05-23 21:21:59,878 INFO Updating Class metadata Environment
+2020-05-23 21:21:59,879 INFO Updating parse annotation Environment
+2020-05-23 21:21:59,879 INFO Updating attributes Environment
+2020-05-23 21:21:59,879 INFO Updating Global Environment
+2020-05-23 21:21:59,879 INFO Updating Global Locations Environment
+2020-05-23 21:21:59,879 PERFORMANCE Full environment built: 0.538956s
+2020-05-23 21:22:00,016 INFO Checking 99 functions...
+2020-05-23 21:22:00,163 INFO Processed 50 of 99 functions
+2020-05-23 21:22:00,286 INFO Processed 99 of 99 functions
+2020-05-23 21:22:00,286 PERFORMANCE Check_TypeCheck: 0.269757s
+2020-05-23 21:22:00,286 MEMORY Shared memory size post-typecheck (size: 13)
+2020-05-23 21:22:00,286 INFO Postprocessing 937 sources...
+2020-05-23 21:22:00,337 INFO Postprocessed 235 of 937 sources
+2020-05-23 21:22:00,384 INFO Postprocessed 470 of 937 sources
+2020-05-23 21:22:00,434 INFO Postprocessed 705 of 937 sources
+2020-05-23 21:22:00,486 INFO Postprocessed 937 of 937 sources
+2020-05-23 21:22:00,488 PERFORMANCE Check: 4.062477s
+2020-05-23 21:22:00,490 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/check-62179.pid`
+2020-05-23 21:22:00,497 ERROR Found 4 type errors!
+
+2020-05-23 21:24:04,325 DEBUG Running `/usr/local/bin/pyre.bin infer -show-error-traces -logging-sections parser -project-root /Users/adamaxelrod/Code/Schedule-Parser -log-directory /Users/adamaxelrod/Code/Schedule-Parser/.pyre -filter-directories /Users/adamaxelrod/Code/Schedule-Parser -search-path /usr/local/lib/pyre_check/typeshed/stdlib/3.7,/usr/local/lib/pyre_check/typeshed/stdlib/3.6,/usr/local/lib/pyre_check/typeshed/stdlib/3,/usr/local/lib/pyre_check/typeshed/stdlib/2and3,/usr/local/lib/pyre_check/typeshed/third_party/3,/usr/local/lib/pyre_check/typeshed/third_party/2and3 .`
+2020-05-23 21:24:04,332 DEBUG Registering process with pid 62242 in pid file `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/infer-62242.pid`
+2020-05-23 21:24:05,124 PERFORMANCE Module tracker built: 0.106208s
+2020-05-23 21:24:05,130 INFO Parsing 937 stubs and sources...
+2020-05-23 21:24:06,569 PERFORMANCE Sources parsed: 1.439825s
+2020-05-23 21:24:06,569 INFO Building type environment...
+2020-05-23 21:24:06,908 INFO Updating is from empty stub result Environment
+2020-05-23 21:24:06,908 INFO Updating Alias Environment
+2020-05-23 21:24:06,908 INFO Updating Edges Environment
+2020-05-23 21:24:06,908 INFO Updating Undecorated functions Environment
+2020-05-23 21:24:06,908 INFO Updating Class metadata Environment
+2020-05-23 21:24:06,908 INFO Updating parse annotation Environment
+2020-05-23 21:24:06,908 INFO Updating attributes Environment
+2020-05-23 21:24:06,908 INFO Updating Global Environment
+2020-05-23 21:24:06,909 INFO Updating Global Locations Environment
+2020-05-23 21:24:06,909 PERFORMANCE Full environment built: 0.338666s
+2020-05-23 21:24:06,909 INFO Running inference...
+2020-05-23 21:24:07,014 INFO Processed 3 of 10 sources
+2020-05-23 21:24:07,052 INFO Processed 4 of 10 sources
+2020-05-23 21:24:07,102 INFO Processed 7 of 10 sources
+2020-05-23 21:24:07,103 INFO Processed 10 of 10 sources
+2020-05-23 21:24:07,103 PERFORMANCE Inference: 0.194707s
+2020-05-23 21:24:07,111 DEBUG Removing pid file: `/Users/adamaxelrod/Code/Schedule-Parser/.pyre/pid_files/infer-62242.pid`
+2020-05-23 21:24:07,130 SUCCESS Outputting inferred stubs to /Users/adamaxelrod/Code/Schedule-Parser/.pyre/types
+
+2020-05-23 21:24:07,133 INFO Annotating files
+2020-05-23 21:24:07,219 INFO Annotated /Users/adamaxelrod/Code/Schedule-Parser/Schedule/Game.py
+2020-05-23 21:24:07,476 INFO Annotated /Users/adamaxelrod/Code/Schedule-Parser/Schedule/Crew.py
+2020-05-23 21:24:07,515 INFO Annotated /Users/adamaxelrod/Code/Schedule-Parser/Schedule/GameInfo.py
+2020-05-23 21:24:07,542 INFO Annotated /Users/adamaxelrod/Code/Schedule-Parser/Schedule/CrewInfo.py
+2020-05-23 21:24:07,579 INFO Annotated /Users/adamaxelrod/Code/Schedule-Parser/Utilities/JSONParser.py
+2020-05-23 21:24:07,679 INFO Annotated /Users/adamaxelrod/Code/Schedule-Parser/scheduleParser.py
+2020-05-23 21:24:07,852 INFO Annotated /Users/adamaxelrod/Code/Schedule-Parser/Schedule/Schedule.py

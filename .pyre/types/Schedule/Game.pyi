@@ -1,0 +1,23 @@
+from typing import Any, Dict, Optional
+
+from typing import Optional
+
+from typing import Optional
+
+from typing import Optional
+
+from typing import Optional
+
+from typing import Optional
+
+
+class Game:
+    def __init__(self, week, away=None, home=None, tv=None, notes=None) -> None: ...
+    def getPrimetime(self) -> Optional[str]: ...
+    def getNotes(self) -> str: ...
+    def setCrew(self, crew) -> None: ...
+    def isEmpty(self) -> bool: ...
+    def printGame(self) -> None: ...
+
+class GameEncoder:
+    def default(self, o) -> Dict[str, Any]: ...

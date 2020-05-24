@@ -5,12 +5,12 @@ import Utilities.Constants as Constants
 from boto3.dynamodb.conditions import Key, Attr
 
 class GameInfo(object):
-    def __init__(self):
+    def __init__(self) -> None:
         self.games = {}
         self.fetchGameInfo()
 
 
-    def fetchGameInfo(self):
+    def fetchGameInfo(self) -> None:
         dynamodb = boto3.resource('dynamodb', region_name=Constants.AWS_REGION)
         table = dynamodb.Table(Constants.TABLE_SCHEDULE_2020)
         response = table.scan()
@@ -42,7 +42,7 @@ class GameInfo(object):
         return nonPrimetimeGames
 
 
-    def updateGame(self, week, inputGame, crew):
+    def updateGame(self, week, inputGame, crew) -> None:
         for game in self.getGames()[str(week)]:
             if (game.getHome() == inputGame.getHome() and  game.getAway() == inputGame.getAway()):
                 game.setCrew(crew)
